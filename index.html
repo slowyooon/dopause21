@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do-Pause 21 | 당신의 '언젠가'를 '오늘'로 바꾸는 21일</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #FAFAF7;
+    color: #2C2C2C;
+    line-height: 1.8;
+  }
+
+  /* CTA 고정 바 */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #2C2C2C;
+    color: #fff;
+    text-align: center;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    z-index: 100;
+    letter-spacing: 0.03em;
+  }
+  .sticky-cta a { color: #E8A87C; text-decoration: none; }
+
+  /* 히어로 */
+  .hero {
+    background: #F5F0E8;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #D4C9B0;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #7A6E5A;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 6vw, 44px);
+    line-height: 1.4;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+  }
+  .hero h1 em {
+    color: #C4704A;
+    font-style: normal;
+  }
+  .hero .tagline {
+    font-size: 14px;
+    color: #9A8E7A;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .hero .sub {
+    font-size: 15px;
+    color: #5A5A5A;
+    max-width: 380px;
+    margin: 0 auto 32px;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: #2C2C2C;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 6px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #C4704A; }
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid #2C2C2C;
+    color: #2C2C2C;
+    padding: 13px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 6px;
+  }
+
+  /* 섹션 공통 */
+  section { padding: 64px 24px; max-width: 640px; margin: 0 auto; }
+  section h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #1A1A1A;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #C4704A;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #E8E0D0;
+    margin: 0;
+  }
+
+  /* 공감 섹션 */
+  .empathy-list {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .empathy-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #F0EBE0;
+    font-size: 15px;
+    color: #4A4A4A;
+  }
+  .empathy-list li::before {
+    content: "ㅡ ";
+    color: #C4B49A;
+  }
+  .empathy-conclusion {
+    background: #F5F0E8;
+    border-left: 3px solid #C4704A;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: #3A3A3A;
+    line-height: 1.7;
+  }
+
+  /* 차이점 비교 */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .compare-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  .compare-card.before {
+    background: #F0F0EC;
+    color: #888;
+    text-decoration-color: #bbb;
+  }
+  .compare-card.after {
+    background: #F5F0E8;
+    color: #2C2C2C;
+    font-weight: 500;
+  }
+  .compare-card .label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .compare-card.before .label { color: #AAA; }
+  .compare-card.after .label { color: #C4704A; }
+  .compare-card ul { list-style: none; }
+  .compare-card ul li { padding: 4px 0; }
+  .compare-card.before ul li::before { content: "✕ "; color: #CCC; }
+  .compare-card.after ul li::before { content: "✓ "; color: #C4704A; }
+
+  /* 진행방식 */
+  .flow-steps { margin-top: 20px; }
+  .flow-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .flow-step .num {
+    min-width: 36px; height: 36px;
+    background: #2C2C2C;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .flow-step .content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .flow-step .content p { font-size: 14px; color: #5A5A5A; }
+
+  /* 트랙 카드 */
+  .track-cards { display: grid; gap: 16px; margin-top: 20px; }
+  .track-card {
+    background: #fff;
+    border: 1px solid #E8E0D0;
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .track-card .track-name {
+    font-size: 13px; font-weight: 700;
+    color: #C4704A; letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .track-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .track-card p { font-size: 14px; color: #6A6A6A; margin-bottom: 12px; }
+  .track-card .example {
+    background: #F5F0E8;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #5A5A5A;
+  }
+  .track-card .example strong { color: #2C2C2C; display: block; margin-bottom: 2px; }
+
+  /* 해피포즈 */
+  .happy-pause-box {
+    background: #F5F0E8;
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+  }
+  .happy-pause-box .emoji { font-size: 40px; margin-bottom: 12px; }
+  .happy-pause-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .happy-pause-box p { font-size: 14px; color: #6A6A6A; line-height: 1.8; }
+
+  /* 비용 */
+  .price-box {
+    background: #fff;
+    border: 1px solid #E8E0D0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .price-header {
+    background: #2C2C2C;
+    color: #fff;
+    padding: 20px 24px;
+  }
+  .price-header h3 { font-size: 18px; font-weight: 700; }
+  .price-header p { font-size: 13px; color: #AAA; margin-top: 4px; }
+  .price-body { padding: 24px; }
+  .price-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EBE0;
+    font-size: 14px;
+  }
+  .price-row:last-child { border-bottom: none; font-weight: 700; }
+  .reward-list { margin-top: 20px; }
+  .reward-item {
+    background: #F5F0E8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .reward-item strong { display: block; font-size: 15px; margin-bottom: 4px; color: #C4704A; }
+
+  /* 체크인 */
+  .checkin-questions {
+    background: #F5F0E8;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+  .checkin-q {
+    padding: 10px 0;
+    border-bottom: 1px solid #E8E0D0;
+    font-size: 14px;
+    color: #3A3A3A;
+  }
+  .checkin-q:last-child { border-bottom: none; }
+  .checkin-q::before { content: "Q. "; color: #C4704A; font-weight: 700; }
+
+  /* 마침표 데이 */
+  .ending-questions { margin-top: 20px; }
+  .ending-q {
+    display: flex; gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #F0EBE0;
+    align-items: flex-start;
+  }
+  .ending-q .tag {
+    background: #2C2C2C; color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .ending-q p { font-size: 14px; color: #3A3A3A; }
+
+  /* FAQ */
+  .faq-list { margin-top: 20px; }
+  .faq-item {
+    border-bottom: 1px solid #F0EBE0;
+    padding: 18px 0;
+  }
+  .faq-q { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .faq-q::before { content: "Q. "; color: #C4704A; }
+  .faq-a { font-size: 14px; color: #5A5A5A; }
+
+  /* 마무리 */
+  .ending-section {
+    background: #2C2C2C;
+    color: #fff;
+    text-align: center;
+    padding: 80px 24px 100px;
+  }
+  .ending-section h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(22px, 5vw, 34px);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .ending-section h2 em { color: #E8A87C; font-style: normal; }
+  .ending-section p { font-size: 14px; color: #AAA; margin-bottom: 32px; }
+  .ending-section .slogan {
+    font-size: 13px; letter-spacing: 0.1em;
+    color: #888; margin-bottom: 32px;
+  }
+  .btn-light {
+    display: inline-block;
+    background: #fff;
+    color: #2C2C2C;
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* 일정 */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .schedule-item {
+    background: #fff;
+    border: 1px solid #E8E0D0;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .schedule-item .date { font-size: 16px; font-weight: 700; color: #C4704A; }
+  .schedule-item .label { font-size: 12px; color: #888; margin-top: 4px; }
+
+  /* 진행방식 앱 */
+  .app-steps { margin-top: 24px; }
+  .app-step {
+    background: #fff;
+    border: 1px solid #E8E0D0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .app-step .icon { font-size: 24px; flex-shrink: 0; }
+  .app-step h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .app-step p { font-size: 13px; color: #6A6A6A; }
+</style>
+</head>
+<body>
+
+<!-- 고정 CTA -->
+<div class="sticky-cta">
+  🌿 3월 11일 시작 · 선착순 마감 &nbsp;
+  <a href="https://forms.gle/BJa7iEefdX4cT17v5" target="_blank">→ Do-Pause 21 참여하기</a>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="badge">🌱 3월 11일 시작 · 21일 챌린지</div>
+  <h1>Do-Pause 21<br>당신의 <em>'언젠가'</em>를<br><em>'오늘'</em>로 바꾸는 21일</h1>
+  <p class="sub">실행이 어려운 게 아니라, 혼자였을 뿐.<br>의지가 약한 게 아니라, 환경이 없었을 뿐.<br>애포즈와 함께, 오늘도 Do 해요!</p>
+  <a href="https://forms.gle/BJa7iEefdX4cT17v5" target="_blank" class="btn-primary">Do-Pause 21 참여하기</a>
+  <p style="font-size:12px;color:#AAA;margin-top:20px;letter-spacing:0.08em;">Do it small. Do it together. Do it today.</p>
+</div>
+
+<hr class="divider">
+
+<!-- 공감 -->
+<section>
+  <div class="section-label">이런 사람에게</div>
+  <h2>이런 생각,<br>해본 적 있나요?</h2>
+  <ul class="empathy-list">
+    <li>이번 달엔 꼭 해야지… 하고 또 다음 달로 넘긴다</li>
+    <li>혼자 시작하면 3일을 못 버틴다</li>
+    <li>의지 문제인 줄 알았는데, 사실 환경이 없었던 것 같다</li>
+    <li>완벽하게 준비되면 시작하려다 결국 아무것도 못 했다</li>
+    <li>작심삼일의 반복, 이번엔 좀 다르게 해보고 싶다</li>
+    <li>미뤄둔 프로젝트 하나를 이번 달엔 끝내고 싶다</li>
+    <li>혼자 하면 흐지부지, 같이 하는 장치가 필요하다</li>
+  </ul>
+  <div class="empathy-conclusion">
+    실행이 어려운 게 아니라, 혼자였을 뿐.<br>
+    의지가 약한 게 아니라, 환경이 없었을 뿐.<br>
+    <strong>애포즈와 함께, 오늘도 Do 해요!</strong>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 차이점 -->
+<section>
+  <div class="section-label">Why Do-Pause</div>
+  <h2>두포즈는<br>무엇이 특별할까요?</h2>
+  <div class="app-steps" style="margin-top:24px">
+    <div class="app-step">
+      <div class="icon">🎯</div>
+      <div>
+        <h3>결과 목표 + 실행 습관, 두 가지만</h3>
+        <p>거창한 계획 없이, 마침표 목표 1개와 오늘의 DO 1개만 정하면 돼요. 단순할수록 오래 갑니다.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">🌿</div>
+      <div>
+        <h3>달리고, 멈추고, 다시 달리는 구조</h3>
+        <p>Do(실행)와 Pause(돌아봄)가 함께 있어요. 달리기만 해선 방향을 잃고, 멈추기만 해선 아무것도 안 남아요.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">💬</div>
+      <div>
+        <h3>혼자가 아닌 환경</h3>
+        <p>같은 시간, 같이 달리는 사람들이 있어요. 피드에서 서로의 DO를 보고 응원하다 보면, 나도 모르게 계속하게 됩니다.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">🏅</div>
+      <div>
+        <h3>완주가 아니어도 괜찮아요</h3>
+        <p>해피포즈로 쉬어가고, 누락분은 기부로 전환돼요. 탈락 없이, 각자의 속도로 21일을 완성합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 진행방식 -->
+<section>
+  <div class="section-label">How it works</div>
+  <h2>진행 방식,<br>한눈에 보기</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="num">1</div>
+      <div class="content">
+        <h3>마침표 목표 1개 세우기</h3>
+        <p>21일 후 남기고 싶은 결과를 숫자로 정해요.<br>콘텐츠 4편, 운동 12회, 진도 10% 등</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">2</div>
+      <div class="content">
+        <h3>오늘의 DO 설정</h3>
+        <p>목표를 만드는 작은 행동을 설정해요. 매일 똑같은 행동을 주 5회 해도 되고, 두 가지 행동을 조합해도 돼요.<br><br>
+        예) 3kg 감량이 목표라면<br>
+        → 주 3회 30분 이상 운동 + 주 2회 샐러드 먹기<br><br>
+        주 5회 인증 가능한 크기면 충분합니다.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">3</div>
+      <div class="content">
+        <h3>주 5회 인증 (총 15회)</h3>
+        <p>완벽하지 않아도 괜찮아요.<br>꾸준하게 조금씩 만들어봐요!</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">4</div>
+      <div class="content">
+        <h3>해피포즈 1장 (Happy Pause)</h3>
+        <p>하루 놓쳐도 괜찮아요.<br>해피포즈데이로 즐거운 날을 보내고 다시 이어가요 :)</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">5</div>
+      <div class="content">
+        <h3>마침표 데이 — 파이널 포즈 (4월 1일)</h3>
+        <p>각자의 결과를 함께 확인하고, 짧은 회고를 나누는 시간.<br>21일동안 내가 찍은 마침표를 함께 나누며, 스스로를 자랑하고 서로를 응원해요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 트랙 -->
+<section>
+  <div class="section-label">Track</div>
+  <h2>나에게 맞는 트랙을<br>골라요</h2>
+  <div class="track-cards">
+    <div class="track-card">
+      <div class="track-name">A. DO-FINISH</div>
+      <h3>프로젝트 완성</h3>
+      <p>미뤄두었던 결과물, 이번 달엔 끝냅니다.</p>
+      <div class="example">
+        <strong>마침표 목표 예시</strong>
+        콘텐츠 4편 발행 / 전자책 초안 완성
+        <strong style="margin-top:8px">오늘의 DO 예시</strong>
+        단일: 주 5회 30분 글쓰기<br>
+        복합: 주 3회 30분 작업 + 주 2회 콘텐츠 리서치<br>
+        <span style="color:#C4704A;font-size:12px">📸 타임스탬프 사진 + 한 줄 기록으로 인증</span>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-name">B. DO-BUILD</div>
+      <h3>습관 만들기</h3>
+      <p>새로운 행동의 관성을 21일 동안 만듭니다.</p>
+      <div class="example">
+        <strong>마침표 목표 예시</strong>
+        체중 3kg 감량 / 책 1권 완독 / 운동 12회
+        <strong style="margin-top:8px">오늘의 DO 예시</strong>
+        단일: 주 5회 30분 운동<br>
+        복합: 주 3회 30분 이상 운동 + 주 2회 샐러드 먹기<br>
+        <span style="color:#C4704A;font-size:12px">📸 타임스탬프 사진 + 한 줄 기록으로 인증</span>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-name">C. DO-KEEP</div>
+      <h3>루틴 유지</h3>
+      <p>흐트러진 일상의 리듬을 되찾습니다.</p>
+      <div class="example">
+        <strong>마침표 목표 예시</strong>
+        아침 루틴 21일 유지 / 저녁 마감 루틴 정착
+        <strong style="margin-top:8px">오늘의 DO 예시</strong>
+        단일: 주 5회 기상 후 10분 명상<br>
+        복합: 주 3회 아침 10분 명상 + 주 2회 저녁 독서 20분<br>
+        또는: 주 5회 기상 직후 물 한 잔 + 5분 스트레칭<br>
+        <span style="color:#C4704A;font-size:12px">📸 타임스탬프 사진 + 한 줄 기록으로 인증</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 앱 흐름 -->
+<section>
+  <div class="section-label">App Flow</div>
+  <h2>이렇게<br>진행돼요</h2>
+  <div class="app-steps">
+    <div class="app-step">
+      <div class="icon">🎯</div>
+      <div>
+        <h3>나의 21일 세팅하기</h3>
+        <p>마침표 목표 + 오늘의 DO를 입력하면 준비 끝.<br>왜 이게 지금 필요한지도 적어두면, 흔들릴 때 다시 읽게 됩니다.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">✅</div>
+      <div>
+        <h3>나의 DO 기록</h3>
+        <p>Day 1~21 진행 바가 채워질수록 실감이 납니다.<br>타임스탬프(날짜가 표시되는) 사진 + 한 줄 기록으로 인증해요.<br>저장하면 자동으로 커뮤니티 피드에 공유됩니다.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">💬</div>
+      <div>
+        <h3>DO 응원하기 (커뮤니티 피드)</h3>
+        <p>내 기록이 피드에 공유돼요. 서로 응원하고 댓글 달면서, 혼자가 아닌 걸 매일 실감합니다.</p>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="icon">📊</div>
+      <div>
+        <h3>DO 진행 현황</h3>
+        <p>전체 참여자 진행률을 함께 확인해요. 경쟁이 아니라, "다들 달리고 있구나" 하는 환경입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 해피포즈 -->
+<section>
+  <div class="section-label">Happy Pause</div>
+  <div class="happy-pause-box">
+    <div class="emoji">🌿</div>
+    <h3>모두에게 쉼표 한 장이 주어집니다</h3>
+    <p style="margin-top:12px">하루 인증을 놓쳤다고 탈락이 아니에요.<br>해피포즈 1장을 쓰면, 조용히 다음 날 복귀할 수 있어요.<br><br>완벽하게 달리는 것보다,<br><strong>포기하지 않는 것</strong>이 중요하니까요.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 비용 -->
+<section>
+  <div class="section-label">Pricing</div>
+  <h2>참여 비용 &<br>보상 안내</h2>
+  <div class="price-box">
+    <div class="price-header">
+      <h3>Do-Pause 21 참가</h3>
+      <p>완주하면 보증금 전액 돌아옵니다</p>
+    </div>
+    <div class="price-body">
+      <div class="price-row"><span>참가비 (운영비)</span><span>10,000원</span></div>
+      <div class="price-row"><span>보증금</span><span>20,000원</span></div>
+      <div class="price-row"><span>합계</span><span>30,000원</span></div>
+    </div>
+  </div>
+  <div class="reward-list" style="margin-top:20px">
+    <div class="reward-item">
+      <strong>🏅 완주자</strong>
+      보증금 환급 + Do-Pause 완주 상장
+    </div>
+    <div class="reward-item">
+      <strong>🌱 인증을 놓친 날</strong>
+      1회마다 1,000원씩 적립되어요.<br>적립된 금액은 챌린지 종료 후 참여자 전원의 이름으로 기부됩니다.
+    </div>
+    <div class="reward-item">
+      <strong>🏆 우수 참여자 (Best Pause)</strong>
+      우수 상장 + 다음 프로그램 할인
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 중간 체크인 -->
+<section>
+  <div class="section-label">선택 옵션</div>
+  <h2>하프포즈<br><span style="font-size:16px;color:#888">(Half Pause · 선택 체크인)</span></h2>
+  <p style="font-size:14px;color:#5A5A5A;margin-bottom:4px">매주 수요일, 달리는 중간 잠깐 멈춰 나를 확인하는 시간.<br>7일차, 14일차에 원하는 분만 가볍게 참여해요.</p>
+  <div class="checkin-questions">
+    <div class="checkin-q">현재 나의 DO 온도는 어떤가요? 그 이유는 무엇인가요?</div>
+    <div class="checkin-q">남은 날들을 위해 딱 하나만 조정한다면?</div>
+    <div class="checkin-q">완주 후 나에게 주고 싶은 Pause는 무엇인가요?</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 마침표 데이 -->
+<section>
+  <div class="section-label">Day 21</div>
+  <h2>마침표 데이<br><span style="font-size:16px;color:#888">(파이널 포즈 · 4월 1일)</span></h2>
+  <p style="font-size:14px;color:#5A5A5A;margin-bottom:16px">21일이 나에게 남긴 것을 함께 확인하는 시간.<br>각자의 마침표를 가져와, 짧은 회고를 함께 나눕니다.</p>
+  <div class="ending-questions">
+    <div class="ending-q">
+      <div class="tag">마침표</div>
+      <p>21일 후, 내가 찍은 마침표를 기록해 주세요.<br>블로그 링크 4개, 운동 총 400분 등 숫자로 확인합니다.</p>
+    </div>
+    <div class="ending-q">
+      <div class="tag">변화</div>
+      <p>시작할 때 나 vs 지금의 나.<br>행동이든, 감정이든, 생각이든 달라진 게 있다면.</p>
+    </div>
+    <div class="ending-q">
+      <div class="tag">발견</div>
+      <p>이 챌린지를 하면서 몰랐던 나를 하나 발견했다면.<br><span style="color:#888;font-size:13px">예: "나는 아침보다 밤에 글이 더 잘 써지는 사람이었구나!"</span></p>
+    </div>
+    <div class="ending-q">
+      <div class="tag">다음</div>
+      <p>만약 이 챌린지를 한 달 더 한다면,<br>나에게 더 잘 맞는 리듬으로 바꾸기 위해 무엇을 조정하고 싶나요?</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 일정 -->
+<section>
+  <div class="section-label">Schedule</div>
+  <h2>참여 일정</h2>
+  <div class="schedule-grid">
+    <div class="schedule-item">
+      <div class="date">3월 10일</div>
+      <div class="label">모집 마감</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date">3월 11일 (수)</div>
+      <div class="label">챌린지 시작</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date">3월 18일 (수)</div>
+      <div class="label">하프포즈 1차</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date">3월 25일 (수)</div>
+      <div class="label">하프포즈 2차</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date">3월 31일 (화)</div>
+      <div class="label">챌린지 마지막날</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date">4월 1일 (수)</div>
+      <div class="label">마침표 데이 (파이널 포즈)</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:32px">
+    <a href="https://forms.gle/BJa7iEefdX4cT17v5" target="_blank" class="btn-primary">Do-Pause 21 참여하기 →</a>
+    <p style="font-size:12px;color:#AAA;margin-top:12px">선착순 마감 · 3월 10일까지</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section>
+  <div class="section-label">FAQ</div>
+  <h2>자주 묻는 질문</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">매일 인증해야 하나요?</div>
+      <div class="faq-a">아니에요! 주 5회 인증으로 21일 동안 총 15회만 인증하면 된답니다! 하루 이틀 쉬어도 충분히 따라갈 수 있어요. 😊</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">인증을 못 한 날이 생기면 어떻게 되나요?</div>
+      <div class="faq-a">해피포즈 1장이 있어요! 한 번은 해피포즈데이를 즐기세요! 그 외 인증을 못 한 날은 1,000원씩 기부금으로 쌓인 후 챌린지가 끝나고 참여자 전원 이름으로 기부됩니다. 중간에 멈춰도 괜찮아요. 다시 함께 이어나가봐요!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">인증은 어떻게 하나요?</div>
+      <div class="faq-a">웹앱 내 '나의 DO 기록' 페이지에서 타임스탬프(날짜가 찍힌) 사진 + 한 줄 기록으로 인증해요. 저장하면 자동으로 피드에 공유됩니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">커뮤니티 분위기는 어떤가요?</div>
+      <div class="faq-a">비교, 경쟁 없이 응원과 복귀 중심이에요. 잘 하는 사람보다 꾸준히 돌아오는 사람이 빛나는 곳입니다. 다들 비슷하게 흔들리고, 다들 비슷하게 다시 시작해요. 🌿</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">혼자 참여해도 괜찮나요?</div>
+      <div class="faq-a">오히려 혼자였기 때문에 흐지부지됐던 분들을 위한 챌린지예요. 같이 달리는 환경이 생기면 정말 달라집니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 마무리 -->
+<div class="ending-section">
+  <h2>오늘,<br>함께 <em>Do</em> 해요.</h2>
+  <p>완벽하지 않아도 괜찮아요.<br>작게 시작해도 괜찮아요.<br>지금 이 순간이, 당신의 '언젠가'를 '오늘'로 바꾸는 첫 걸음입니다.</p>
+  <div class="slogan">Do it small. Do it together. Do it today.</div>
+  <a href="https://forms.gle/BJa7iEefdX4cT17v5" target="_blank" class="btn-light">Do-Pause 21 참여하기 →</a>
+</div>
+
+</body>
+</html>
